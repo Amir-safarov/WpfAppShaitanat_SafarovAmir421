@@ -9,6 +9,40 @@
       Title="FoodListPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height = "1*" />
+        </Grid.RowDefinitions >
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width = "1*" />
+        </Grid.ColumnDefinitions >
         
+        <ScrollViewer HorizontalScrollBarVisibility = "Disabled" VerticalScrollBarVisibility= "Disabled">
+            <WrapPanel Name = "FoodsWp" ItemWidth="350" ItemHeight="200" HorizontalAlignment="Center"/>
+        </ScrollViewer>
+        
+        <StackPanel Grid.Column="1" Margin= "10">
+            
+            <ComboBox Name= "DateFilterCB" SelectionChanged= "DateFilterComboBox_SelectionChanged" >
+                <ComboBoxItem Content="По умолчанию"/>
+                <ComboBoxItem Content="Я-А"/>
+                <ComboBoxItem Content="А-Я"/>
+            </ComboBox>
+            
+            <StackPanel Orientation = "Horizontal" HorizontalAlignment= "Center" Margin= "10" >
+                <Button Name= "ToLeftBtn" Click= "PrefPageButton_Click" Height="30" Width="30" Margin="3">{-</Button>
+                <Button Name= "ToRightBtn" Click= "NextPageButton_Click" Height="30" Width="30" Margin="3">-}</Button>
+            </StackPanel>
+            
+        </StackPanel>
+        
+        <Button Grid.Row= "2" HorizontalAlignment= "Left"
+                VerticalAlignment= "Center" Name= "AddFoodButton"
+                Click= "AddFoodButton_Click" Content="Добавить корма"/>
+        
+        <Border  Grid.Row= "2" BorderBrush = "Black" BorderThickness= "1" HorizontalAlignment= "Right" VerticalAlignment= "Center">
+            <TextBlock Name= "PagesTb"/>
+        </Border>
     </Grid>
 </Page>
