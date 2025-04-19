@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ShaitanatDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnimalFood">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="LastEditDate" Type="date" />
+          <Property Name="ImageBinary" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="AnimalFood_Sale">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_AF" Type="int" />
+          <Property Name="SaleCapacity" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "ShaitanatDB.dbo.User" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="User">
+          <Property Name="ID" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="Patronymic" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Role_ID" Type="int" />
+        </EntityType>-->
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_AnimalFood_Sale_AnimalFood">
+          <End Role="AnimalFood" Type="Self.AnimalFood" Multiplicity="0..1" />
+          <End Role="AnimalFood_Sale" Type="Self.AnimalFood_Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalFood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnimalFood_Sale">
+              <PropertyRef Name="ID_AF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Ошибки, обнаруженные при создании:
+ошибка 6004: Невозможно найти таблицу "ShaitanatDB.dbo.User", на которую ссылается связь.
+        <Association Name="FK_User_UserRole" />-->
+        <EntityContainer Name="Хранилище ShaitanatDBModelContainer">
+          <EntitySet Name="AnimalFood" EntityType="Self.AnimalFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalFood_Sale" EntityType="Self.AnimalFood_Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AnimalFood_Sale_AnimalFood" Association="Self.FK_AnimalFood_Sale_AnimalFood">
+            <End Role="AnimalFood" EntitySet="AnimalFood" />
+            <End Role="AnimalFood_Sale" EntitySet="AnimalFood_Sale" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShaitanatDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AnimalFood">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="LastEditDate" Type="DateTime" Precision="0" />
+          <Property Name="ImageBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="AnimalFood_Sale" Relationship="Self.FK_AnimalFood_Sale_AnimalFood" FromRole="AnimalFood" ToRole="AnimalFood_Sale" />
+        </EntityType>
+        <EntityType Name="AnimalFood_Sale">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_AF" Type="Int32" />
+          <Property Name="SaleCapacity" Type="Int32" />
+          <NavigationProperty Name="AnimalFood" Relationship="Self.FK_AnimalFood_Sale_AnimalFood" FromRole="AnimalFood_Sale" ToRole="AnimalFood" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_AnimalFood_Sale_AnimalFood">
+          <End Role="AnimalFood" Type="Self.AnimalFood" Multiplicity="0..1" />
+          <End Role="AnimalFood_Sale" Type="Self.AnimalFood_Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalFood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnimalFood_Sale">
+              <PropertyRef Name="ID_AF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShaitanatDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnimalFood" EntityType="Self.AnimalFood" />
+          <EntitySet Name="AnimalFood_Sale" EntityType="Self.AnimalFood_Sale" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+          <AssociationSet Name="FK_AnimalFood_Sale_AnimalFood" Association="Self.FK_AnimalFood_Sale_AnimalFood">
+            <End Role="AnimalFood" EntitySet="AnimalFood" />
+            <End Role="AnimalFood_Sale" EntitySet="AnimalFood_Sale" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShaitanatDBModelContainer" CdmEntityContainer="ShaitanatDBEntities">
+          <EntitySetMapping Name="AnimalFood">
+            <EntityTypeMapping TypeName="ShaitanatDBModel.AnimalFood">
+              <MappingFragment StoreEntitySet="AnimalFood">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="ImageBinary" ColumnName="ImageBinary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalFood_Sale">
+            <EntityTypeMapping TypeName="ShaitanatDBModel.AnimalFood_Sale">
+              <MappingFragment StoreEntitySet="AnimalFood_Sale">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_AF" ColumnName="ID_AF" />
+                <ScalarProperty Name="SaleCapacity" ColumnName="SaleCapacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShaitanatDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="ShaitanatDBModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

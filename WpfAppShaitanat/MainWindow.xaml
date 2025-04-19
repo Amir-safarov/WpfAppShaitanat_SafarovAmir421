@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfAppShaitanat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppShaitanat"
+        mc:Ignorable="d"
+        Title="" Height="550" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "26*" />
+            <RowDefinition Height="191*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation = "Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Center">
+            <Button Name = "CloseButton" Click="CloseButton_Click">Свернуть</Button>
+            <Button Name = "AppExitButton" Click="AppExitButton_Click">Закрыть</Button>
+        </StackPanel>
+        <Frame Name = "MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"></Frame>
+    </Grid>
+</Window>
