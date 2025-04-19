@@ -18,7 +18,7 @@
             <ColumnDefinition Width = "1*" />
         </Grid.ColumnDefinitions >
         
-        <ScrollViewer HorizontalScrollBarVisibility = "Disabled" VerticalScrollBarVisibility= "Disabled">
+        <ScrollViewer HorizontalScrollBarVisibility = "Disabled" VerticalScrollBarVisibility= "Hidden">
             <WrapPanel Name = "FoodsWp" ItemWidth="350" ItemHeight="200" HorizontalAlignment="Center"/>
         </ScrollViewer>
         

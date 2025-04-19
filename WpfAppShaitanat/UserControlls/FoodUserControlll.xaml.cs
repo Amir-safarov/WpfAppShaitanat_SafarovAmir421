@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WpfAppShaitanat.DataBase;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WpfAppShaitanat.UserControlls
 {
@@ -56,6 +58,19 @@ namespace WpfAppShaitanat.UserControlls
         {
             if (!char.IsDigit(e.Text, 0))
                 e.Handled = true;
+        }
+
+        private void EditImageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                food.ImageBinary = File.ReadAllBytes(openFileDialog.FileName);
+                FoodImg.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                food.LastEditDate = DateTime.Now;
+                App.DB.SaveChanges();
+            }
         }
     }
 }

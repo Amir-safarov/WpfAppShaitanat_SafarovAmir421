@@ -40,10 +40,10 @@ namespace WpfAppShaitanat.Pages
             switch (DateFilterCB.SelectedIndex)
             {
                 case 1:
-                    foodToShow = foodToShow.OrderBy(x => x.Name).ToList();
+                    foodToShow = foodToShow.OrderByDescending(x => x.Name).ToList();
                     break;
                 case 2:
-                    foodToShow = foodToShow.OrderByDescending(x => x.Name).ToList();
+                    foodToShow = foodToShow.OrderBy(x => x.Name).ToList();
                     break;
             }
 
@@ -76,6 +76,7 @@ namespace WpfAppShaitanat.Pages
             if (currentPage > 0)
             {
                 currentPage--;
+                DateFilterCB.SelectedIndex = 0;
                 RefreshList();
             }
         }
@@ -85,6 +86,7 @@ namespace WpfAppShaitanat.Pages
             if ((currentPage + 1) * PageSize < allFood.Count())
             {
                 currentPage++;
+                DateFilterCB.SelectedIndex = 0;
                 RefreshList();
             }
         }

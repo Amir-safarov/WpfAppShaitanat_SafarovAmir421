@@ -12,7 +12,7 @@
                 <ColumnDefinition Width = "1*" />
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="EditImageBtn" BorderBrush="Black" BorderThickness="1">    
+            <Button Name="EditImageBtn" BorderBrush="Black" BorderThickness="1" Click="EditImageBtn_Click">    
                 <Image Name = "FoodImg"/>
             </Button>
             <StackPanel Grid.Column="1" HorizontalAlignment= "Left" VerticalAlignment= "Center">

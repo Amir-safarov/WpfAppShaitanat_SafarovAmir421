@@ -34,11 +34,11 @@ namespace WpfAppShaitanat.Pages
         {
             StringBuilder error = new StringBuilder();
             if (string.IsNullOrWhiteSpace(FoodPriceTB.Text))
-                error.Append("Цена пустая");
+                error.AppendLine("Цена пустая");
             if (string.IsNullOrWhiteSpace(FoodNameTB.Text))
-                error.Append("Наименование корма пустое");
+                error.AppendLine("Наименование корма пустое");
             if (imageBytes == null || imageBytes.Length == 0)
-                error.Append("Фото отсутсвует");
+                error.AppendLine("Фото отсутсвует");
             if (error.Length > 0)
             {
                 MessageBox.Show(error.ToString());
@@ -69,20 +69,6 @@ namespace WpfAppShaitanat.Pages
         {
             if (!char.IsDigit(e.Text, 0))
                 e.Handled = true;
-        }
-
-        private BitmapImage GetimageSources(byte[] byteImage)
-        {
-            if (byteImage != null)
-            {
-                MemoryStream memoryStream = new MemoryStream(byteImage);
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.StreamSource = memoryStream;
-                image.EndInit();
-                return image;
-            }
-            return null;
         }
 
         private void EditImaeButton_Click(object sender, RoutedEventArgs e)
