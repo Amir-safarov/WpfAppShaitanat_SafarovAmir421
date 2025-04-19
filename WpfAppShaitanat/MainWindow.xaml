@@ -5,16 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppShaitanat"
         mc:Ignorable="d"
-        Title="" Height="550" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Шайтанэт" Height="650" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height = "26*" />
-            <RowDefinition Height="191*"/>
+            <RowDefinition Height = "1*" />
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation = "Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Center">
-            <Button Name = "CloseButton" Click="CloseButton_Click">Свернуть</Button>
-            <Button Name = "AppExitButton" Click="AppExitButton_Click">Закрыть</Button>
-        </StackPanel>
-        <Frame Name = "MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"></Frame>
+        <DockPanel VerticalAlignment="Center">
+            <TextBlock Text="Шайтанэт" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="5"/>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Name = "CloseButton"  Click="CloseButton_Click" Content ="Свернуть" Margin="5" Height="30" Width="120" FontWeight="Bold"/>
+                <Button Name = "AppExitButton" Click="AppExitButton_Click" Content="Закрыть" Margin="5" Height="30" Width="120" FontWeight="Bold"/>
+            </StackPanel>
+        </DockPanel>
+        <Frame Name = "MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
     </Grid>
 </Window>

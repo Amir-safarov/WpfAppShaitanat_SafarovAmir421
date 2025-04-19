@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControlls\FoodUserControlll.xaml.cs">
+      <DependentUpon>FoodUserControlll.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,12 +106,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddNewFoodPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\FoodListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlls\FoodUserControlll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AddNewFoodPage.xaml.cs">
+      <DependentUpon>AddNewFoodPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\FoodListPage.xaml.cs">
       <DependentUpon>FoodListPage.xaml</DependentUpon>
     </Compile>
@@ -145,9 +159,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControlls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -162,6 +174,16 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Pr0.jpg" />
+    <Resource Include="Resources\Pr1.jpg" />
+    <Resource Include="Resources\Pr2.jpg" />
+    <Resource Include="Resources\Pr3.jpg" />
+    <Resource Include="Resources\Pr4.jpg" />
+    <Resource Include="Resources\Pr5.jpg" />
+    <Resource Include="Resources\Pr6.jpg" />
+    <Resource Include="Resources\Pr7.jpg" />
+    <Resource Include="Resources\Pr8.jpg" />
+    <Resource Include="Resources\Pr9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

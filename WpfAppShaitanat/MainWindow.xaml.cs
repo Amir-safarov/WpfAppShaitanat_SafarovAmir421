@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppShaitanat.DataBase;
+using WpfAppShaitanat.Pages;
 
 namespace WpfAppShaitanat
 {
@@ -20,16 +23,29 @@ namespace WpfAppShaitanat
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static MainWindow Current;
+        public static MainWindow Instance;
 
         public MainWindow()
         {
             InitializeComponent();
-            if (Current == null)
-                Current = this;
+            if (Instance == null)
+                Instance = this;
+
+            NavigateTo(new FoodListPage());
+
+            //List<AnimalFood> cosplaytype = App.DB.AnimalFood.ToList();
+            //for (int i = 0; i < cosplaytype.Count(); i++)
+            //{
+            //    try
+            //    {
+            //        cosplaytype[i].ImageBinary = File.ReadAllBytes($"C:\\Users\\Amir\\Desktop\\Exam\\WpfAppShaitanat\\WpfAppShaitanat\\Resources\\Pr{i}.jpg");
+            //    }
+            //    finally { }
+            //}
+            //App.DB.SaveChanges();
         }
 
-        public void Navigate(Page page)
+        public void NavigateTo(Page page)
         {
             MainFrame.NavigationService.Navigate(page);
         }
@@ -41,8 +57,11 @@ namespace WpfAppShaitanat
 
         private void AppExitButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Закрыть приложение?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Закрыть приложение?", "Подтверждение", MessageBoxButton.YesNo)
+                == MessageBoxResult.Yes)
+            {
                 Application.Current.Shutdown();
+            }
         }
     }
 }
